@@ -175,3 +175,22 @@ else
     Console.WriteLine("ei tea seda värvi");
 }
 Console.WriteLine("The colour has maybe changed!!!!!");
+
+/* ISESEISEV ÜLESANNE */
+
+//# Kolija kalkulaator - Kirjuta programm mis:
+//#    - Küsib kasutajalt kas ta tahab ära mõõta pappkasti või õlitünni.
+//#    - olenevalt kasutaja sisestusest küsib ta:
+//#    - - tünni jaoks:
+//#    - - - kas kasutaja teab põhja raadiust (r) või põhja läbimõõtu (d):
+//#    - - - tünni kõrgust
+//#    - - - kaane paksust (kaane paksus võtab tünni kõrgusest maha, kuna kaan võtab tünni sisust natuke ruumi)
+//#    - - - Arvutab tünni ruumala mahu, tünni küljepindala, tünni kogupindala
+//#    - - kasti jaoks:
+//#    - - - Kas kast on kuubiku kujuline või risttahuka kujuline
+//#    - - - - kui on kuubik, siis küsib kasutajalt ainult küljepikkust
+//#    - - - - kui on risttahukas siis küsib kasutajalt:
+//#    - - - - - pikima külje pikkust, 
+//#    - - - - - lühima külje pikkust ja
+//#    - - - - - kasti kõrgust
+//#    - - arvutab vastavalt kasti kogupindala, mahu, ja pikima läbiva joone (d)
