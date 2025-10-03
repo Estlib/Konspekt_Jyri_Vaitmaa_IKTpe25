@@ -1,4 +1,4 @@
-﻿
+﻿/*
 
 //1. tuvasta sisu võrdluses tühja stringiga, string andmetüüp
 Console.WriteLine("Tere kasutaja, kuidas on sinu nimi?:");
@@ -175,22 +175,84 @@ else
     Console.WriteLine("ei tea seda värvi");
 }
 Console.WriteLine("The colour has maybe changed!!!!!");
-
+*/
 /* ISESEISEV ÜLESANNE */
 
 //# Kolija kalkulaator - Kirjuta programm mis:
 //#    - Küsib kasutajalt kas ta tahab ära mõõta pappkasti või õlitünni.
+Console.WriteLine("Kas tahad mõõta ära kasti või tünni?");
+string valik = Console.ReadLine();
 //#    - olenevalt kasutaja sisestusest küsib ta:
-//#    - - tünni jaoks:
-//#    - - - kas kasutaja teab põhja raadiust (r) või põhja läbimõõtu (d):
-//#    - - - tünni kõrgust
-//#    - - - kaane paksust (kaane paksus võtab tünni kõrgusest maha, kuna kaan võtab tünni sisust natuke ruumi)
-//#    - - - Arvutab tünni ruumala mahu, tünni küljepindala, tünni kogupindala
+if (valik == "tünn")
+{
+
+    //#    - - tünni jaoks:
+    //#    - - - kas kasutaja teab põhja raadiust (r) või põhja läbimõõtu (d):
+    Console.WriteLine("Kas sa tead tünni raadiust (r) või põhja läbimõõtu (d)");
+    string rvõid = Console.ReadLine();
+    Console.WriteLine("Sisesta see mõõt:");
+    double mõõt = double.Parse(Console.ReadLine());
+    if (rvõid == "d")
+    {
+        mõõt = mõõt / 2;
+    }
+    else if(rvõid != "r")
+    {
+        Console.WriteLine("Sisend ei ole tuntav");
+    }
+
+    //#    - - - tünni kõrgust
+    Console.WriteLine("Kui kõrge on su tünn");
+    int kõrgus = int.Parse(Console.ReadLine());
+
+    //#    - - - kaane paksust (kaane paksus võtab tünni kõrgusest maha, kuna kaan võtab tünni sisust natuke ruumi)
+    Console.WriteLine("kui paks on tünni kaas?");
+    int kaanepaksus = int.Parse(Console.ReadLine());
+
+    //#    - - - Arvutab tünni ruumala mahu, tünni küljepindala, tünni kogupindala
+    double tünnipõhiS = Math.PI * (mõõt * mõõt);
+    double mahtV = tünnipõhiS * (kõrgus - kaanepaksus);
+    double küljepindala = tünnipõhiS * kõrgus;
+    double kogupindala = (tünnipõhiS * 2) + küljepindala;
+    Console.WriteLine($"Sinu tünn mahutab {mahtV} \nTünni küljepindala on {küljepindala} \nKogupindala aga on{kogupindala}");
+}
 //#    - - kasti jaoks:
-//#    - - - Kas kast on kuubiku kujuline või risttahuka kujuline
-//#    - - - - kui on kuubik, siis küsib kasutajalt ainult küljepikkust
-//#    - - - - kui on risttahukas siis küsib kasutajalt:
-//#    - - - - - pikima külje pikkust, 
-//#    - - - - - lühima külje pikkust ja
-//#    - - - - - kasti kõrgust
-//#    - - arvutab vastavalt kasti kogupindala, mahu, ja pikima läbiva joone (d)
+else if(valik == "kast")
+{
+    //#    - - - Kas kast on kuubiku kujuline või risttahuka kujuline
+    Console.WriteLine("Kas su kast on kuubik (k) või risttahukas (r)? ");
+    string kastitüüp = Console.ReadLine();
+    if (kastitüüp == "k")
+    {
+        //#    - - - - kui on kuubik, siis küsib kasutajalt ainult küljepikkust
+        Console.WriteLine("Sisesta kasti küljepikkus:");
+        double külgA = double.Parse(Console.ReadLine());
+        double kuubik = Math.Pow(külgA, 3);
+        double küljepindala = (külgA * külgA) * 6;
+        double diagonaal = külgA * Math.Sqrt(3);
+        Console.WriteLine($"Sinu kuubik mahutab {kuubik} \nKuubiku küljepindala on {küljepindala} \nDiagonaal aga on{diagonaal}");
+    }
+    //#    - - - - kui on risttahukas siis küsib kasutajalt:
+    else if (kastitüüp == "r")
+    {
+        //#    - - - - - pikima külje pikkust, 
+        Console.WriteLine("Mis on sinu kasti kõige pikim külg?:");
+        double pikkKülg = double.Parse(Console.ReadLine());
+
+        //#    - - - - - lühima külje pikkust ja
+        Console.WriteLine("Mis on sinu kasti kõige lühim külg?:");
+        double lühikekülg = double.Parse(Console.ReadLine());
+
+        //#    - - - - - kasti kõrgust
+        Console.WriteLine("Mis on sinu kasti kõrgus?:");
+        double kõrgus = double.Parse(Console.ReadLine());
+
+        //#    - - arvutab vastavalt kasti kogupindala, mahu, ja pikima läbiva joone (d)
+        double V = pikkKülg * lühikekülg * kõrgus;
+        double kogupindala = 2 * ((pikkKülg * lühikekülg) + (lühikekülg * kõrgus) + (pikkKülg * kõrgus));
+        double diagonaal = Math.Sqrt((pikkKülg * pikkKülg) + (lühikekülg * lühikekülg) + (kõrgus * kõrgus));
+        Console.WriteLine($"Sinu kast mahutab {V} \nKasti küljepindala on {kogupindala} \nDiagonaal aga on{diagonaal}");
+    }
+
+}
+
