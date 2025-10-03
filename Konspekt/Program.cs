@@ -270,6 +270,7 @@ Console.WriteLine("banana");
     // -> taane aitab arendajal aru saada millise koodiploki sees, miski on. Vajalik ka kompilaatorile.
 // "banana" -> parameeter mis antakse funktsioonile WriteLine töötlemiseks kaasa.
 // ; -> iga koodilause lõppeb komakooloniga
+// // -> kommentaaritingmärk üherealise kommentaari jaoks (kaks / märki)
 
 int muutuja = 3;
 // int -> muutuja nime ees olev andmetüübi kirjeldus. See näitab ära mis tüüpi andmed selle muutuja sees on
@@ -295,4 +296,34 @@ int jagamine = 1 / 1; //jagamine, esimene arv jagatakse teisega
 double astendamine = Math.Pow(2, 2); //astendamine, esimene arv astendatakse teisega
 double juurimine = Math.Sqrt(2); //ruutjuur, parameetriks arv mida juuritakse
 
+//Kodune ülesanne, kasutades süntaksiseletust, kirjelda kommentaariga iga koodirida
+Console.WriteLine("tere, sisesta esimene liidetav arv");
+int arv1 = int.Parse(Console.ReadLine());
+Console.WriteLine("tere, sisesta teine liidetav arv");
+int arv2 = int.Parse(Console.ReadLine());
+Console.WriteLine("sisesta tehemärk: / * + - ^");
+string tehtetyyp = Console.ReadLine();
 
+int tulemus = 0;
+if (tehtetyyp == "+")
+{
+    tulemus = arv1 + arv2;
+}
+if (tehtetyyp == "-")
+{
+    tulemus = arv1 - arv2;
+}
+if (tehtetyyp == "*")
+{
+    tulemus = arv1 * arv2;
+}
+if (tehtetyyp == "/")
+{
+    tulemus = arv1 / arv2;
+}
+if (tehtetyyp == "^")
+{
+    tulemus = (int)Math.Pow(arv1, arv2);
+}
+
+Console.WriteLine(tulemus);
