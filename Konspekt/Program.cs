@@ -296,8 +296,29 @@ int jagamine = 1 / 1; //jagamine, esimene arv jagatakse teisega
 double astendamine = Math.Pow(2, 2); //astendamine, esimene arv astendatakse teisega
 double juurimine = Math.Sqrt(2); //ruutjuur, parameetriks arv mida juuritakse
 
-//Kodune ülesanne, kasutades süntaksiseletust, kirjelda kommentaariga iga koodirida
+
+int arv = 0; // sobib
+string sõne = "abc"; //sobib
+//string string = "abc"; //ei sobi
+
+// muutuja nimeks ei sobi järgnevad sõnad:
+//abstract, as, base, bool, break, byte, case,
+//catch, char, checked, class, const, continue, decimal,
+//default, delegate, do, double, else, enum, event,
+//explicit, extern, false, finally, fixed, float, for
+//foreach, goto, if, implicit, in, int,
+//interface, internal, is, lock, long, namespace, new,
+//null, object, operator, out, override, params,
+//private, protected, public, readonly, ref, return, sbyte,
+//sealed, short, sizeof, stackalloc, static, string, struct,
+//switch, this, throw, true, try, typeof, uint,
+//ulong, unchecked, unsafe, ushort, using, virtual, void,
+//volatile, while.
+
+//Ülesanne, kasutades süntaksiseletust, kirjelda kommentaariga iga koodirida
 Console.WriteLine("tere, sisesta esimene liidetav arv");
+//Adresseerime moodulit "Console", punkti abil ütleme et kasutame funktsiooni WriteLine, et kasutajale öelda sõnum
+// mis asub funktsiooni taga olevate sulgude vahel, antud rida lõppeb lauselõpumärgiga.
 int arv1 = int.Parse(Console.ReadLine());
 Console.WriteLine("tere, sisesta teine liidetav arv");
 int arv2 = int.Parse(Console.ReadLine());
