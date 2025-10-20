@@ -447,6 +447,29 @@ else if (true){} //kaitstud sõnad else ja if (else if) kutsuvad esile sekundaar
 else{} //kaitstud sõna else kutsub esile järeltingimuse, millele peab eelnema kas if või else if, ning mille koodi-
        //ploki sisu täidetakse kõikide if ja else if sees olevate tingimuste läbikukkumisel.
 
+int option = 3; // -------
+switch (option) //"switch" on kaitstud sõna alternatiivse tingimuskontrolli jaoks mida saab if else-if asemel kasutada.
+                //Sulgude vahele käib muutuja nimi, mille põhjal tingimuslik ümberlülitus toimub. Siin sulgude vahel
+                //ei ole tingimus ise, vaid kõigest kontrollitav muutuja, või omakorda sulgude vahel muu tingimus.
+{               //pärast lülitusvalikut tuleb koodiplokk
+    case 1:     //koodiploki sees on erinevad juhtumid. juhtumit kontrollitakse kaitstud sõna "case" abil. Antud juhul
+                //kontrollitakse, kas muutujas on väärtus 1, millele järgneb koolon ":"
+                //peale koolonit kirjeldatakse tehtav tegevus
+        break;  //ja kui tegevus on täidetud, väljutakse kogu switch tegevusest kaitstud sõna "break"iga. Peale "break"i
+                //on lauselõpumärk ";"
+    case 2:
+        break;
+    case 3:
+        break;
+                //juhtumeid võib olla mitmeid, antud juhul on neid kolm kindlalt, ja üks mida tehakse igal muul juhul.
+    default:    //kaitstud sõna "default" avab juhtumi kui muutujas ei ole mitte ühtegi muud "case" juhtumi tingimust.
+        break;  //Ka default lüppeb sõnaga "break;"
+}
+
+/* Sõne tööriistad jm tekstiga seotud */
+string alfa = "a\nb";    // \n -> tekitab ühe sõne sisse reamurde, sõne kus on üks "\n" omab kahte rida
+string beta = $"a {alfa} b"; // $  -> lubab kasutada muutujaid loogeliste sulgude vahel otse teksti sees
+
 /* Loogilised tehted */
 // && -> "and" loogiline tehe, mida kasutatakse tingimuste kirjutamisel, ning mis annab positiivse vastuse (true) juhul kui
 //      mõlemal pool && märki olevad tingimused on täidetud. Kui üks neist ei ole, siis annab negatiivse vastuse (false).
@@ -482,8 +505,20 @@ arv++;      // ++ -> on spetsiifiliselt ühe juurde liitmiseks lühivariant.
 arv--;      // -- -> on spetsiifiliselt ühe maha lahutamiseks lühivariant.
 
 /* Tsüklid */
+
 // 1. do-while
+int d = 0;
 do // "do" on kaitstud sõna, mis alustab do-while tsüklit pärast mida on koodiplokk, ning ütleb et tee seda koodi
 {
+    d++;
+} while (d != 5); //niikaua kuni while järel olevate sulgude vahel olev tingimus on täidetud.
 
-} while (true); //niikaua kuni while järel olevate sulgude vahel olev tingimus on täidetud.
+// 2. while
+int i = 1; //tsüklimuutuja mis kontrollib "while" tsükli tööd
+while (i < 5) //"while" on kaitstud sõna mis alustab while tsükli varianti, ilma "do"-ta, ning vajab tihtipeale välist tsüklimuutujat
+              //antud juhul on selleks i. Tsükli tingimus, mis peale "while" sõna on, sulgude vahel, kontrollibki tingimuse abil, selle
+              //muutuja olekut. Siin kontrollitakse, et tsükkel ei oleks suurem kui 5, kui ta on, siis tsükli töö lõppeb.
+{
+    //koodiplokk kus midagi tehakse
+    i++; //ning seejärel muudetakse tsüklimuutuja "i" olekut, antud juhul liidetakse 1 juurde
+}
