@@ -277,16 +277,33 @@ Console.WriteLine("The colour has maybe changed!!!!!");
 //// = -> võrdusmärk omistab sellele muutujale mingisuguse väärtuse
 //// 3 -> väärtus mis sellele muutujale omistatakse
 
-////võimalikud andmetüübid:
-//int a = 1; // täisarv
-//decimal b = 2.0M; // kümnendsüsteemis olev komakohaga arv
-//float c = 3.0f; // kümnendsüsteemis olev ujukomaga arv
-//double d = 4.0d; // kümnendsüsteemis olev komakohaga arv, sarnane decimaliga
-//char c1 = 'a'; // üksainus täht või tähemärk
-//string s = "tekst"; // inimloetaval kujul tekst
-//var x = "abc"; // ebamäärase tüübiga kohalik muutuja. 
-//var y = 123;
-//const int z = 3; // konstant-tüüpi muutujaid ei saa muuta, need on read-only
+//võimalikud lihtandmetüübid:
+int a = 1; // täisarv
+decimal b = 2.0M; // kümnendsüsteemis olev komakohaga arv
+float c = 3.0f; // kümnendsüsteemis olev ujukomaga arv
+double d = 4.0d; // kümnendsüsteemis olev komakohaga arv, sarnane decimaliga
+char c1 = 'a'; // üksainus täht või tähemärk
+string s = "tekst"; // inimloetaval kujul tekst
+var x = "abc"; // ebamäärase tüübiga kohalik muutuja. 
+var y = 123;
+const int z = 3; // konstant-tüüpi muutujaid ei saa muuta, need on read-only
+
+//võimalikud komposiitandmetüübid:
+// 1. massiiv:
+// [] -> Massiiv on komposiitandmetüüp, mille sees saab olla mitmeid samat tüüpi lihtandmeid. Massiivi tähistatakse kantsulgudega.
+//       Massiive saab olla ükskõik millist lihtandmetüüpi massiive.
+//       Massiivi tekitamisel tuleb ära öelda kui pikk või suur see massiiv on
+//       Massiiv saab olla koostatud ka teistest massiividest.
+//
+// Esimene tekitusviis:
+int[] arvuMassiiv = new int[3]; // andemtüüp int väljendab et tegu on täisarvutüüpoi andmega ja kantsulud väljendavad et tegu ühtlasi
+                                // ka massiiviga. nimeks on "arvuMassiiv" ja võrdusmärgiga, on esimene tekitusmoodus öelda et tegu on
+                                // uue massiiviga kasutades kaitsud sõna "new", ja sellele järgneb massiivi pikkuse sätestus "int[3]"
+                                // see tähendab et siin massiivis on 3 elementi, mis on täisarvud.
+// Teine tekitusviis:
+int[] arvuMassiiv2 = [1,2,3];   // teine massiivi tekitusviis, kus järjendi pikkuse sätestamise asemel, pannakse elemendid kohe sisse
+                                // järjendi pikkus tuletatakse elementide arvust
+
 
 ////põhilised matemaatilised tehted
 //int liitmine = 1 + 1; // liitmine, kaks arvu kokku
@@ -521,4 +538,15 @@ while (i < 5) //"while" on kaitstud sõna mis alustab while tsükli varianti, il
 {
     //koodiplokk kus midagi tehakse
     i++; //ning seejärel muudetakse tsüklimuutuja "i" olekut, antud juhul liidetakse 1 juurde
+}
+
+// 3. for
+int kogus = 6; //muutuja mida tsükkel kasutab töötlemiseks mingisugusel kujul
+for (int k = 0; k < kogus; k++) // kaitstud sõna "for" alustab for tsüklit, pärast mida on sulud, mille vahel on kõik tsükli töö jaoks
+                                // vajalik info. esimene parameeter tekitab tsükli töö jaoks muutuja "int k = 0;", teine parameeter on
+                                // tingimuslause mis kontrollib tingimuse täitumist "k < kogus;" ning kolmas inkrementeerib tekitatud
+                                // muutujat "k++;". pane tähele et iga sulgude vahel oleva osa järel on lauselõpumärk. Tsükli tööd
+                                // kontrolliv tingimuslause koosneb kolmest reast, mitte ühest, nagu while, või do-while puhul.
+{                               // koodiplokk kus tehakse mingi tegevus
+    Console.WriteLine(k);       // antud juhul on tegevuseks muutuja "k" arvu väljakuvamine
 }
