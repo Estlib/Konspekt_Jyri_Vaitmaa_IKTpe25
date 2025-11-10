@@ -278,6 +278,8 @@ Console.WriteLine("The colour has maybe changed!!!!!");
 //// 3 -> väärtus mis sellele muutujale omistatakse
 
 //võimalikud lihtandmetüübid:
+using System.Runtime.InteropServices;
+
 int a = 1; // täisarv
 decimal b = 2.0M; // kümnendsüsteemis olev komakohaga arv
 float c = 3.0f; // kümnendsüsteemis olev ujukomaga arv
@@ -305,7 +307,41 @@ int[] arvuMassiiv2 = [1,2,3];   // teine massiivi tekitusviis, kus järjendi pik
                                 // järjendi pikkus tuletatakse elementide arvust
 // -- massiivi sisemised meetodid:
 int hasthismany = arvuMassiiv.Length; // massiivi meetod "Length" mille me saame kasutusele võtta punkti abil, loendab kokku, mitu
-                                      // elementi järjendis parasjagu on.
+                                      // elementi järjendis parasjagu on
+
+// 2. loend:
+// List<T> -> Loend on komposiitandmetüüp, mille sees saab olla mitmeid samat tüüpi liht ja komposiitandmeid. Loend-tüüpi andmeid tähistatakse
+//            Täiendava andmetüübikirjeldusega "List" mille järel noolsulgudesse asetatakse mis tüüpi andmed loendis on.
+//            Loendi tekitamisel, erinevalt massiivist, ei pea ütlema kui pikk loend on. Loendisse saab dünaamiliselt elemente juurde
+//            lisada, ehk tema pikkus ei ole fikseeritud.
+//            Sarnaselt massiiviga, saab loend omada endas, teisi loendeid.
+//
+// Esimene tekitusviis:
+List<int> arvuNimekiri = new List<int>(); //Andmetüübi kirjeldus "List<>" näitab et tegu on loendiga, List noolsulgude vahel on loendis
+                                          //olevate andmete andmetüüp. muutuja nimeks on "arvuNimekiri". Omistame sellesse muutujasse 
+                                          //kaitstud sõna "new" abil uue tühja täisarvuloendi sätestusega "List<int>()". 
+// Teine tekitusviis:
+List<int> arvuNimekiri2 = new List<int>() {1,2,3}; //teine loendi tekitusviis, muutuja instantsieerimine võrdusmärgi ees on sama nagu
+                                                   //esimesel, juurde tuleb ainult võrdusamärgi taga olevale sätestusele loogelised
+                                                   //sulud koos juba sinna asetatud elementidega. Enam ei ole tegu tühja nimekirjaga,
+                                                   //vaid loendiga kus on kolm elementi.
+                                                   // Kolmas tekitusviis:
+List<int> arvuNimekiri3 = new List<int>(3); //kolmas loendi tekitusviis kus muutuja instantsieerimine jääb samaks, aga, tavaliste sulgude
+                                            //vahel, sarnaselt massiiviga, saame anda loendile esialgse suuruse. Loend ise ei oma veel
+                                            //andmeid, aga loendis on kolm tühja elementi. Nimelt, on sätestusel, peale andmetüüpi
+                                            //kirjeldavaid noolsulge, paar tavalisi sulge, mille sisse saab parameetrina panna loendi
+                                            //pikkuse. ()
+// -- Loendi sisemised meetodid:
+arvuNimekiri3.Add(67); // Loendi meetod "Add()" lisab enne punkti olevale järjendile uue elemendi, element mida lisada, on Add meetodi
+                       // sulgude vahel. Elementi saab lisada otse (antud juhul "67") või muutujana - näiteks ...Add(arv);
+int loendiPikkus = arvuNimekiri3.Count(); // Loendi meetod "Count()" loeb kokku mitu elementi järjendis on, meetod tagastab täisarvu 
+                                          //mis vastab elementide kogusele.
+bool kasSeeArvOn = arvuNimekiri3.Contains(3); // Loendi meetod "Contains()" otsib kogu järjendi seest elementi, mis vastab sulgude vahel
+                                              // olevale parameetrile, tagastab kas true või false - on leitud või ei ole. Tegemist on
+                                              // põhimõtteliselt foreach tsükliga, mis otsib kindlat parameetrid, töödeldes läbi, kogu
+                                              // loendi.
+arvuNimekiri3.Remove(4); // Loendi meetod "Remove()" eemaldab enne punkti olevast loendist, kindlal asukohal oleva elemendi. Sulgude
+                         //vahel on parameetriks eemaldatava elemendi asukohajärjekorranumber.
 
 ////põhilised matemaatilised tehted
 //int liitmine = 1 + 1; // liitmine, kaks arvu kokku
@@ -335,69 +371,69 @@ int hasthismany = arvuMassiiv.Length; // massiivi meetod "Length" mille me saame
 //volatile, while.
 
 ////Ülesanne, kasutades süntaksiseletust, kirjelda kommentaariga iga koodirida
-//Console.WriteLine("tere, sisesta esimene liidetav arv");
-////Adresseerime moodulit "Console", punkti abil ütleme et kasutame funktsiooni WriteLine, et kasutajale öelda sõnum
-//// mis asub funktsiooni taga olevate sulgude vahel, antud rida lõppeb lauselõpumärgiga.
-//int arv1 = int.Parse(Console.ReadLine());
-//// instantsieerime muutuja "arv1", ning ütleme et sinna saab panna täisarve andmetüübisõnaga int, selle muutuja sisse omistame tulemuse
-//// mille saame kasutajalt Console.Readline() abil (kasutame moodulist "Console" realugemisfunktsiooni), ning teisendame int andmetüübis
-//// asuva funktsiooni "Parse" abil kasutajasisendi täisarvuks. Lause lõppeb lauselõpumärgiga ; .
-//Console.WriteLine("tere, sisesta teine liidetav arv");
-////Adresseerime moodulit "Console", punkti abil ütleme et kasutame funktsiooni WriteLine, et kasutajale öelda sõnum
-//// mis asub funktsiooni taga olevate sulgude vahel, antud rida lõppeb lauselõpumärgiga.
-//int arv2 = int.Parse(Console.ReadLine());
-//// instantsieerime muutuja "arv2", ning ütleme et sinna saab panna täisarve andmetüübisõnaga int, selle muutuja sisse omistame tulemuse
-//// mille saame kasutajalt Console.Readline() abil (kasutame moodulist "Console" realugemisfunktsiooni), ning teisendame int andmetüübis
-//// asuva funktsiooni "Parse" abil kasutajasisendi täisarvuks. Lause lõppeb lauselõpumärgiga ; .
-//Console.WriteLine("sisesta tehemärk: / * + - ^");
-////Adresseerime moodulit "Console", punkti abil ütleme et kasutame funktsiooni WriteLine, et kasutajale öelda sõnum
-//// mis asub funktsiooni taga olevate sulgude vahel, antud rida lõppeb lauselõpumärgiga.
-//string tehtetyyp = Console.ReadLine();
-//// tekitame muutuja "tehtetyyp", mille ette paneme andmetüübiks string ehk ütleme et seal on tekst, ning võrdusmärgi abil omistame talle
-//// konsooli rea pealt loetu info, mis saame kasutades "Console" mooduli, ReadLine() funktsiooni. lause lõppeb lauselõpumärgiga ; ..
+Console.WriteLine("tere, sisesta esimene liidetav arv");
+//Adresseerime moodulit "Console", punkti abil ütleme et kasutame funktsiooni WriteLine, et kasutajale öelda sõnum
+// mis asub funktsiooni taga olevate sulgude vahel, antud rida lõppeb lauselõpumärgiga.
+int arv1 = int.Parse(Console.ReadLine());
+// instantsieerime muutuja "arv1", ning ütleme et sinna saab panna täisarve andmetüübisõnaga int, selle muutuja sisse omistame tulemuse
+// mille saame kasutajalt Console.Readline() abil (kasutame moodulist "Console" realugemisfunktsiooni), ning teisendame int andmetüübis
+// asuva funktsiooni "Parse" abil kasutajasisendi täisarvuks. Lause lõppeb lauselõpumärgiga ; .
+Console.WriteLine("tere, sisesta teine liidetav arv");
+//Adresseerime moodulit "Console", punkti abil ütleme et kasutame funktsiooni WriteLine, et kasutajale öelda sõnum
+// mis asub funktsiooni taga olevate sulgude vahel, antud rida lõppeb lauselõpumärgiga.
+int arv2 = int.Parse(Console.ReadLine());
+// instantsieerime muutuja "arv2", ning ütleme et sinna saab panna täisarve andmetüübisõnaga int, selle muutuja sisse omistame tulemuse
+// mille saame kasutajalt Console.Readline() abil (kasutame moodulist "Console" realugemisfunktsiooni), ning teisendame int andmetüübis
+// asuva funktsiooni "Parse" abil kasutajasisendi täisarvuks. Lause lõppeb lauselõpumärgiga ; .
+Console.WriteLine("sisesta tehemärk: / * + - ^");
+//Adresseerime moodulit "Console", punkti abil ütleme et kasutame funktsiooni WriteLine, et kasutajale öelda sõnum
+// mis asub funktsiooni taga olevate sulgude vahel, antud rida lõppeb lauselõpumärgiga.
+string tehtetyyp = Console.ReadLine();
+// tekitame muutuja "tehtetyyp", mille ette paneme andmetüübiks string ehk ütleme et seal on tekst, ning võrdusmärgi abil omistame talle
+// konsooli rea pealt loetu info, mis saame kasutades "Console" mooduli, ReadLine() funktsiooni. lause lõppeb lauselõpumärgiga ; ..
 
-//int tulemus = 0;
-//// instantsieerime muutuja tulemus, mille andmetüübiks on int, ja omistame talle esialgu väärtuse 0. Lause lõpp lõpeb lauselõpumärgiga
-//if (tehtetyyp == "+")
-//// teeme tingimuslause if, ning sulgude vahele kirjutame tingimuseks kontrolli, kas muutuja "tehtetüüp" sisu on samal kujul, kui sõne "+"
-//{
-//    tulemus = arv1 + arv2;
-//}
-//// peale tingimust on koodiplokk {} loogeliste sulgude vahel. koodiplokk sisaldab endas ühte rida, kus muutujasse tulemus omistatakse nüüd väärtus liites kokku
-//// muutuja arv1 ja muutuja arv2. Lause lõppeb lauselõpumärgiga sulgude sees.
-//if (tehtetyyp == "-")
-//// teeme tingimuslause if, ning sulgude vahele kirjutame tingimuseks kontrolli, kas muutuja "tehtetüüp" sisu on samal kujul, kui sõne "-"
-//{
-//    tulemus = arv1 - arv2;
-//}
-//// peale tingimust on koodiplokk {} loogeliste sulgude vahel. koodiplokk sisaldab endas ühte rida, kus muutujasse tulemus omistatakse nüüd väärtus lahutades
-//// muutujast arv1 muutuja arv2. Lause lõppeb lauselõpumärgiga sulgude sees.  
-//if (tehtetyyp == "*")
-//// teeme tingimuslause if, ning sulgude vahele kirjutame tingimuseks kontrolli, kas muutuja "tehtetüüp" sisu on samal kujul, kui sõne "*"
-//{
-//    tulemus = arv1 * arv2;
-//}
-//// peale tingimust on koodiplokk {} loogeliste sulgude vahel. koodiplokk sisaldab endas ühte rida, kus muutujasse tulemus omistatakse nüüd väärtus korrutades
-//// muutuja arv1 ja muutuja arv2 sisu omavahel kokku. Lause lõppeb lauselõpumärgiga sulgude sees.
-//if (tehtetyyp == "/")
-//// teeme tingimuslause if, ning sulgude vahele kirjutame tingimuseks kontrolli, kas muutuja "tehtetüüp" sisu on samal kujul, kui sõne "/"
-//{
-//    tulemus = arv1 / arv2;
-//}
-//// peale tingimust on koodiplokk {} loogeliste sulgude vahel. koodiplokk sisaldab endas ühte rida, kus muutujasse tulemus omistatakse nüüd väärtus jagades
-//// muutuja arv1 muutujaga arv2. Lause lõppeb lauselõpumärgiga sulgude sees.
-//if (tehtetyyp == "^")
-//// teeme tingimuslause if, ning sulgude vahele kirjutame tingimuseks kontrolli, kas muutuja "tehtetüüp" sisu on samal kujul, kui sõne "^"
-//{
-//    tulemus = (int)Math.Pow(arv1, arv2);
-//}
-//// peale tingimust on koodiplokk {} loogeliste sulgude vahel. koodiplokk sisaldab endas ühte rida, kus muutujasse tulemus omistatakse nüüd väärtus kasutades
-//// moodulist "Math" punkti abil funktsiooni "Pow()", selle sees on arv1 astendatavana esimene parameeter, ning arv2 astendajana teine parameeter.
-//// Funktsiooni ees on kiirteisendus kus funktsiooni väljund teisendatakse täisarvuks (int) abil. Lause lõppeb lauselõpumärgiga sulgude sees.
+int tulemus = 0;
+// instantsieerime muutuja tulemus, mille andmetüübiks on int, ja omistame talle esialgu väärtuse 0. Lause lõpp lõpeb lauselõpumärgiga
+if (tehtetyyp == "+")
+// teeme tingimuslause if, ning sulgude vahele kirjutame tingimuseks kontrolli, kas muutuja "tehtetüüp" sisu on samal kujul, kui sõne "+"
+{
+    tulemus = arv1 + arv2;
+}
+// peale tingimust on koodiplokk {} loogeliste sulgude vahel. koodiplokk sisaldab endas ühte rida, kus muutujasse tulemus omistatakse nüüd väärtus liites kokku
+// muutuja arv1 ja muutuja arv2. Lause lõppeb lauselõpumärgiga sulgude sees.
+if (tehtetyyp == "-")
+// teeme tingimuslause if, ning sulgude vahele kirjutame tingimuseks kontrolli, kas muutuja "tehtetüüp" sisu on samal kujul, kui sõne "-"
+{
+    tulemus = arv1 - arv2;
+}
+// peale tingimust on koodiplokk {} loogeliste sulgude vahel. koodiplokk sisaldab endas ühte rida, kus muutujasse tulemus omistatakse nüüd väärtus lahutades
+// muutujast arv1 muutuja arv2. Lause lõppeb lauselõpumärgiga sulgude sees.  
+if (tehtetyyp == "*")
+// teeme tingimuslause if, ning sulgude vahele kirjutame tingimuseks kontrolli, kas muutuja "tehtetüüp" sisu on samal kujul, kui sõne "*"
+{
+    tulemus = arv1 * arv2;
+}
+// peale tingimust on koodiplokk {} loogeliste sulgude vahel. koodiplokk sisaldab endas ühte rida, kus muutujasse tulemus omistatakse nüüd väärtus korrutades
+// muutuja arv1 ja muutuja arv2 sisu omavahel kokku. Lause lõppeb lauselõpumärgiga sulgude sees.
+if (tehtetyyp == "/")
+// teeme tingimuslause if, ning sulgude vahele kirjutame tingimuseks kontrolli, kas muutuja "tehtetüüp" sisu on samal kujul, kui sõne "/"
+{
+    tulemus = arv1 / arv2;
+}
+// peale tingimust on koodiplokk {} loogeliste sulgude vahel. koodiplokk sisaldab endas ühte rida, kus muutujasse tulemus omistatakse nüüd väärtus jagades
+// muutuja arv1 muutujaga arv2. Lause lõppeb lauselõpumärgiga sulgude sees.
+if (tehtetyyp == "^")
+// teeme tingimuslause if, ning sulgude vahele kirjutame tingimuseks kontrolli, kas muutuja "tehtetüüp" sisu on samal kujul, kui sõne "^"
+{
+    tulemus = (int)Math.Pow(arv1, arv2);
+}
+// peale tingimust on koodiplokk {} loogeliste sulgude vahel. koodiplokk sisaldab endas ühte rida, kus muutujasse tulemus omistatakse nüüd väärtus kasutades
+// moodulist "Math" punkti abil funktsiooni "Pow()", selle sees on arv1 astendatavana esimene parameeter, ning arv2 astendajana teine parameeter.
+// Funktsiooni ees on kiirteisendus kus funktsiooni väljund teisendatakse täisarvuks (int) abil. Lause lõppeb lauselõpumärgiga sulgude sees.
 
-//Console.WriteLine(tulemus);
-//// Adresseerime moodulit "Console", ning kasutame sealt funktsiooni "WriteLine" koos sulgude vahel parameetriga tulemus, et kuvada kasutajale tehte vastus.
-//// lause lõppeb lauselõpumärgiga.
+Console.WriteLine(tulemus);
+// Adresseerime moodulit "Console", ning kasutame sealt funktsiooni "WriteLine" koos sulgude vahel parameetriga tulemus, et kuvada kasutajale tehte vastus.
+// lause lõppeb lauselõpumärgiga.
 
 
 Console.WriteLine("Sisesta ostusumma");
@@ -526,11 +562,11 @@ arv--;      // -- -> on spetsiifiliselt ühe maha lahutamiseks lühivariant.
 /* Tsüklid */
 
 // 1. do-while
-int d = 0;
+int dw = 0;
 do // "do" on kaitstud sõna, mis alustab do-while tsüklit pärast mida on koodiplokk, ning ütleb et tee seda koodi
 {
-    d++;
-} while (d != 5); //niikaua kuni while järel olevate sulgude vahel olev tingimus on täidetud.
+    dw++;
+} while (dw != 5); //niikaua kuni while järel olevate sulgude vahel olev tingimus on täidetud.
 
 // 2. while
 int i = 1; //tsüklimuutuja mis kontrollib "while" tsükli tööd
@@ -551,4 +587,18 @@ for (int k = 0; k < kogus; k++) // kaitstud sõna "for" alustab for tsüklit, p�
                                 // kontrolliv tingimuslause koosneb kolmest reast, mitte ühest, nagu while, või do-while puhul.
 {                               // koodiplokk kus tehakse mingi tegevus
     Console.WriteLine(k);       // antud juhul on tegevuseks muutuja "k" arvu väljakuvamine
+}
+
+// 4. foreach
+int[] arvuLoend = { 3, 89, 123412, 7, 67 }; //massiiv mida foreach tsükkel kasutab, või töötleb mingil kujul.
+foreach (var arvInLoend in arvuLoend) // kaitstud sõna foreach alustab foreach tsükli. Pärast mida on sulud, mille vahel tekitatakse
+                                      // ajutine muutuja andmetüübiga "var" töödeldava andmekogumi üksikelemendi jaoks. süntaksis olev
+                                      // kaitstud sõna "in" väljendab et tsükkel käib selle loendi elementide kohta, ning var "arvInLoend
+                                      // muutuja hoiab endas just peale sõna "in" oleva andmekogumi elementi. Tsüklil ei ole nähtavat
+                                      // tsüklimuutujat ega tingimust, tsükkel toimib niikaua kuni elemente jätkub ehk tsükli töö käib
+                                      // iga üksiku elemendi kohta andmekogumis. Tsüklil ei ole vaja tsüklimuutujat, kuna talle on
+                                      // sisse ehitatud vaikimisi elemndi järjestuse jälgimine. Niipalju kui andmeid on, ongi see,
+                                      // mitu korda tsükkel käivitatakse.
+{                                     // {} koodiplokk kus tehakse mingi tegevus
+    Console.WriteLine(arvInLoend);    // antud juhul kuvatakse välja ajutine muutuja, mille sees on loendi element. 
 }
