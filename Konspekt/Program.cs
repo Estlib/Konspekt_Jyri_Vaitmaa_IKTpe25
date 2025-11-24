@@ -287,7 +287,7 @@ internal class Program
         int a = 1; // täisarv
         decimal b = 2.0M; // kümnendsüsteemis olev komakohaga arv
         float c = 3.0f; // kümnendsüsteemis olev ujukomaga arv
-        double d = 4.0d; // kümnendsüsteemis olev komakohaga arv, sarnane decimaliga
+        double d = 4.01d; // kümnendsüsteemis olev komakohaga arv, sarnane decimaliga
         char c1 = 'a'; // üksainus täht või tähemärk
         string s = "tekst"; // inimloetaval kujul tekst
         var x = "abc"; // ebamäärase tüübiga kohalik muutuja. 
@@ -356,6 +356,17 @@ internal class Program
         //int jagamine = 1 / 1; //jagamine, esimene arv jagatakse teisega
         //double astendamine = Math.Pow(2, 2); //astendamine, esimene arv astendatakse teisega
         //double juurimine = Math.Sqrt(2); //ruutjuur, parameetriks arv mida juuritakse
+
+        /* Matemaatilised tehted moodulist math */
+
+        Math.Round(d); //Moodulist "Math" kutsutakse punkti abil esile meetod "Round". Sulgude vahel on ümardatav arv.
+                       //Round ümardab sulgude vahel olevas muutujas asetseva arvu, vastavalt komakohtade parameetrile.
+                       //Vaikeväärtusena, lähima täisarvuni. 0-4 on allapoole, 5-9 on ülespoole.
+        double newpi = Math.PI; //Moodulist "Math" kutsutakse punkti abil esile kaitstud väärtus, PI mis väljendab matemaatilist
+                                //pi-d ning saab kasutada kui tavaline arv.
+        double astendus = Math.Pow(2, 2); //Moodulist "Math" kutsutakse punkti abil esile meetod "Pow" (power). Sulgude vahel on
+                                          //Kaks parameetrit, esimene on neist Astendatav ja teine astendaja. antud jugul oleks
+                                          //vastuseks 16.
 
 
         //int arv = 0; // sobib
@@ -608,6 +619,20 @@ internal class Program
         {                                     // {} koodiplokk kus tehakse mingi tegevus
             Console.WriteLine(arvInLoend);    // antud juhul kuvatakse välja ajutine muutuja, mille sees on loendi element. 
         }
+
+        /* Castimine */
+
+        // Castimine on viis, kuidas ühest andmetüübist teist saada. Castimist on kahte eri liiki, automaatne ja manuaalne.
+        // Automaatne castmine toimub siis, kui teisendatakse väiksemast andmetüübist, suuremasse.
+        // Manuaalne castimine toimub siis, kui tahetakse saada suuremast andmetüübist väiksemat.
+        // Castitakse nii, et teisendatava muutuja ette, pannakse sulud koos soovitud andmetüübiga.
+
+        double newData1 = 2.22d; //tekitame, või on olemas, suure mahuga andmed muutujas newData1. Tegu on double andmetega.
+        float data1Float = (float)newData1; //"(float)" teisendab double tüüpi andmed float tüüpi andmeteks.
+        long data1Long = (long)newData1; //"(long)" teisendab double tüüpi andmed long tüüpi andmeteks.
+        int data1Int = (int)newData1; //"(int)" teisendab double tüüpi andmed int tüüpi andmeteks.
+        char data1Char = (char)newData1;//"(char)" teisendab double tüüpi andmed char tüüpi andmeteks.
+
     }
     /* meetodid */
 
